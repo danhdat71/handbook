@@ -13,7 +13,7 @@ class CreateConfigModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('config_models', function (Blueprint $table) {
+        Schema::create('configs', function (Blueprint $table) {
             $table->id();
             $table->string('background')->nullable()->default(null);
             $table->string('logo')->nullable()->default(null);
@@ -33,6 +33,6 @@ class CreateConfigModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config_models');
+        Schema::dropIfExists('configs');
     }
 }

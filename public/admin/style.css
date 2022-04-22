@@ -1,0 +1,78 @@
+.wrap-image-bg{
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+.wrap-image-bg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.wrap-image-bg input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
+    opacity: 0;
+}
+.load-frame{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.746);
+    flex-direction: column;
+}
+.load-frame .load-bar{
+    width: 80%;
+    height: 10px;
+    border-radius: 999px;
+    background-color: rgb(229, 229, 229);
+    overflow: hidden;
+}
+.load-frame .percen{
+    padding-bottom: 5px;
+    font-size: 25px;
+}
+.load-frame .load-bar span{
+    display: block;
+    width: 50%;
+    height: 100%;
+    background-color: rgb(0, 152, 213);
+}
+.wrap-sound-bg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 250px;
+    position: relative;
+    cursor: pointer;
+}
+.wrap-sound-bg input{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    top:0;
+    left: 0;
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+}
+.wrap-sound-bg .icon .fa-play,
+.wrap-sound-bg .icon .fa-pause{
+    font-size: 50px;
+    opacity: .5;
+}
+.wrap-sound-bg .icon .fa-pause{
+    display: none;
+}

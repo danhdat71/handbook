@@ -10,12 +10,12 @@ class Config extends Model
     use HasFactory;
 
     /**
-     * Table name
+     * Thuộc tính tên bảng
      * **/
     protected $table = 'configs';
 
     /**
-     * Fillable table
+     * Thuộc tính tên cột
      * **/
     protected $fillable = [
         'id',

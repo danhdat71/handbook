@@ -10,12 +10,12 @@ class Book extends Model
     use HasFactory;
 
     /**
-     * Table name
+     * Thuộc tính tên bảng
      * **/
     protected $table = 'books';
 
     /**
-     * Table fillables
+     * Thuộc tính tên cột
      * **/
     protected $fillable = [
         'id',
