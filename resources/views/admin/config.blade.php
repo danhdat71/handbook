@@ -29,18 +29,18 @@
                                             Chọn ảnh nền
                                         </div>
                                         <div class="card-body">
-                                            <form class="wrap-image-bg">
-                                                <div class="load-frame d-none">
-                                                    <div class="percen">15<span>%</span></div>
+                                            <form action="" method="post" enctype="multipart/form-data" id="form-background" class="wrap-image-bg">
+                                                <div class="load-frame load-frame-background d-none">
+                                                    <div class="percen">0</div>
                                                     <div class="load-bar">
-                                                        <span></span>
+                                                        <span class="progress-bar"></span>
                                                     </div>
                                                 </div>
-                                                <input class="input-image change-background" type="file">
+                                                <input class="input-image change-background" type="file" name="background" accept="image/*">
                                                 <img
                                                     class="preview-image"
-                                                    src="@if(isset($config->background_image))
-                                                        {{$config->background_image}}
+                                                    src="@if(isset($config->background))
+                                                        {{$config->background}}
                                                         @else
                                                         {{"image/fixed/bg_eximage.jpg"}}
                                                     @endif"
@@ -56,22 +56,24 @@
                                             Chọn nhạc nền
                                         </div>
                                         <div class="card-body">
-                                            <form class="wrap-sound-bg">
-                                                <div class="load-frame d-none">
-                                                    <div class="percen">15<span>%</span></div>
+                                            <form class="wrap-sound-bg" id="wrap-sound-bg">
+                                                <div class="load-frame load-frame-sound d-none">
+                                                    <div class="percen"></div>
                                                     <div class="load-bar">
                                                         <span></span>
                                                     </div>
                                                 </div>
-                                                <input class="input-sound" type="file">
-                                                <div class="play icon"><i class="fas fa-play"></i></div>
-                                                <div class="pause icon"><i class="fas fa-pause"></i></div>
+                                                <div class="wrap-input">
+                                                    Upload nhạc mới
+                                                    <input name="background_sound" class="input-sound" type="file" accept="audio/*">
+                                                </div>
+                                                <audio class="control-audio" src="{{$config->background_sound}}" controls></audio>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row row-config">
                                 <div class="col-12"><h4 class="pb-3 pt-4">Cấu hình</h4></div>
                                 <div class="col-lg-4">
                                     <div class="card">
@@ -81,13 +83,25 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="" id="">Chiều rộng</label>
-                                                        <input id="book_width" type="number" class="form-control">
+                                                        <input
+                                                            name="book_width"
+                                                            id="book_width"
+                                                            type="text"
+                                                            class="form-control"
+                                                            value="{{$config->book_width}}"
+                                                        >
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="" id="">Chiều cao</label>
-                                                        <input id="book_height" type="number" class="form-control">
+                                                        <input
+                                                            name="book_height"
+                                                            id="book_height"
+                                                            type="text"
+                                                            class="form-control"
+                                                            value="{{$config->book_height}}"
+                                                        >
                                                     </div>
                                                 </div>
                                             </form>
@@ -100,7 +114,12 @@
                                         <form class="card-body">
                                             <div class="form-group">
                                                 <label for="">Tốc độ chuyển trang</label>
-                                                <input type="number" class="form-control" name="speed">
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    name="speed"
+                                                    value="{{$config->speed}}"
+                                                >
                                             </div>
                                         </form>
                                     </div>
@@ -111,12 +130,45 @@
                                         <form class="card-body">
                                             <div class="form-group">
                                                 <label for="">Chọn hiện bóng</label>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Hiện</option>
-                                                    <option value="">Ẩn</option>
+                                                <select name="is_gradient" id="" class="form-control">
+                                                    <option
+                                                        value="1"
+                                                        @if($config->is_gradient == true)
+                                                        {{"selected"}}
+                                                        @endif
+                                                    >Hiện</option>
+                                                    <option
+                                                        value="0"
+                                                        @if($config->is_gradient == false)
+                                                        {{"selected"}}
+                                                        @endif
+                                                    >Ẩn</option>
                                                 </select>
                                             </div>
                                         </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">Thông tin</div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="">Tiêu đề</label>
+                                                <input class="form-control" name="title" type="text" value="{{$config->title}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Mô tả</label>
+                                                <input class="form-control" name="description" type="text" value="{{$config->description}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Link website</label>
+                                                <input class="form-control" name="website" type="text" value="{{$config->website}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Số điện thoại</label>
+                                                <input class="form-control" name="phone" type="text" value="{{$config->phone}}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

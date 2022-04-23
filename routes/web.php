@@ -15,4 +15,6 @@ use App\Http\Controllers\ConfigController;
 */
 
 Route::get('/config', [ConfigController::class, 'index']);
+Route::post('/config', [ConfigController::class, 'configData']);
 Route::post('/change-background', [ConfigController::class, 'changeBackground']);
+Route::post('/change-sound', [ConfigController::class, 'changeSound']);

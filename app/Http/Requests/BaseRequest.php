@@ -22,6 +22,7 @@ class BaseRequest extends FormRequest
 
     /**
      * Quy định cấu trúc mã lỗi nhập liệu
+     * Lỗi validate trả về 200 thay vì 402
      *
      * @param Validator $validator
      * @return $errs
@@ -30,7 +31,10 @@ class BaseRequest extends FormRequest
     {
         $errors = $validator->errors();
         throw new HttpResponseException(
-            response()->json($errors, Response::HTTP_UNPROCESSABLE_ENTITY)
+            response()->json([
+                'status' => false,
+                'messages' => $errors
+            ], Response::HTTP_OK)
         );
     }
 }

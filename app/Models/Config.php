@@ -25,6 +25,12 @@ class Config extends Model
         'description',
         'background_sound',
         'phone',
-        'website'
+        'website',
+        'type',
+        'book_width',
+        'book_height',
+        'is_gradient',
+        'auto_center',
+        'speed'
     ];
 }
