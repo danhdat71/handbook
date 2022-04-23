@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\BaseRequest;
 
-class SelectBackgroundRequest extends BaseRequest
+class SelectSoundRequest extends BaseRequest
 {
     /**
      * Quy định validate
@@ -15,7 +15,7 @@ class SelectBackgroundRequest extends BaseRequest
     public function rules()
     {
         return [
-            'background' => 'required|max:10000|mimes:jpg,png,jpeg'
+            'background_sound' => 'required|max:10000|mimes:mp3'
         ];
     }
 
@@ -28,9 +28,9 @@ class SelectBackgroundRequest extends BaseRequest
     public function messages()
     {
         return [
-            'background.required' => 'Ảnh rỗng !',
-            'background.max' => 'Ảnh không quá 10Mb !',
-            'background.mimes' => 'Định dạng ảnh phải là jpg, png, jpeg !',
+            'background_sound.required' => 'Âm thanh rỗng !',
+            'background_sound.max' => 'Âm thanh không quá 10Mb !',
+            'background_sound.mimes' => 'Định dạng Âm thanh phải là mp3 !',
         ];
     }
 }

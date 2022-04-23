@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\SelectBackgroundRequest;
+use App\Http\Requests\SelectBackgroundRequest;
+use App\Http\Requests\SelectSoundRequest;
+use App\Http\Requests\ConfigDataRequest;
 use Illuminate\Http\Request;
 use App\Services\ConfigService;
 
@@ -27,17 +29,49 @@ class ConfigController extends Controller
     public function index()
     {
         $config = $this->configService->getDetailConfig();
-        return view('admin.config', compact($config));
+        return view('admin.config', compact(['config']));
     }
 
     /**
      * Thay đổi ảnh nền book
      *
      * @param Request $file
-     * @return $linkFile
+     * @return Response
      * **/
     public function changeBackground(SelectBackgroundRequest $request)
     {
-        return $request->all();
+        $file = $request->file('background');
+        $result = $this->configService->changeBackground($file);
+
+        return $result
+            ? $this->success("Thành công !")
+            : $this->error500("Lỗi từ phía máy chủ !");
+    }
+
+    /**
+     * Thay đổi nhạc nền
+     *
+     * @param Request $file
+     * @return Response
+     * **/
+    public function changeSound(SelectSoundRequest $request)
+    {
+        $file = $request->file('background_sound');
+        $result = $this->configService->changeSound($file);
+        return $result
+            ? $this->success($result)
+            : $this->error500("Lỗi từ phía máy chủ !");
+    }
+
+    /**
+     * Cấu hình các input
+     *
+     * @param Request
+     * @return Response
+     * **/
+    public function configData(ConfigDataRequest $request)
+    {
+        $requestData = $request->all();
+        return $this->configService->configData($requestData);
     }
 }

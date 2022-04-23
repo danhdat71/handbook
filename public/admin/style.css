@@ -29,8 +29,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.746);
+    background-color: rgb(255, 255, 255);
     flex-direction: column;
+    z-index: 99;
 }
 .load-frame .load-bar{
     width: 80%;
@@ -53,26 +54,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 100%;
     height: 250px;
     position: relative;
     cursor: pointer;
 }
-.wrap-sound-bg input{
+.wrap-sound-bg .wrap-input{
+    width: 80%;
+    height: 50px;
+    border: 2px solid rgb(189, 189, 189);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 999px;
+    color: rgb(189, 189, 189);
+    margin-bottom: 10px;
+}
+.wrap-sound-bg .wrap-input input{
+    position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    top:0;
-    left: 0;
-    position: absolute;
     z-index: 10;
+    opacity: 0;
     cursor: pointer;
 }
 .wrap-sound-bg .icon .fa-play,
 .wrap-sound-bg .icon .fa-pause{
     font-size: 50px;
     opacity: .5;
-}
-.wrap-sound-bg .icon .fa-pause{
-    display: none;
 }
