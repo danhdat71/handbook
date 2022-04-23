@@ -21,6 +21,20 @@ trait ResponseTrait
     }
 
     /**
+     * Phản hồi json thành công
+     *
+     * @param $msg
+     * @return Response
+     * **/
+    public function fail($msg)
+    {
+        return response()->json([
+            'status' => false,
+            'messages' => $msg
+        ], Response::HTTP_OK);
+    }
+
+    /**
      * Lỗi Internal Server Error
      *
      * @param $msg

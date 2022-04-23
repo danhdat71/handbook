@@ -13,4 +13,5 @@ final class ImageConstants
      * item[3] : Chiều cao ảnh tạm
      * **/
     const BACKGROUND = [1024, 600, 500, 250];
+    const BOOK_PAGE = [800, 900, 200, 300];
 }
