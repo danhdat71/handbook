@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.wraper {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden!important;
+    position: relative;
+}
+
+#background-site {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#background-site img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#book {
+    position: absolute;
+    transition: .5s;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+}
+
+#book .odd {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.3954175420168067) 0%, rgba(0, 0, 0, 0.17412902661064422) 3%, rgba(4, 4, 53, 0) 6%, rgba(9, 9, 121, 0) 50%, rgba(4, 4, 50, 0) 94%, rgba(0, 0, 0, 0) 97%, rgba(0, 0, 0, 0) 100%);
+}
+
+#book .even {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 3%, rgba(4, 4, 53, 0) 6%, rgba(9, 9, 121, 0) 50%, rgba(4, 4, 50, 0) 94%, rgba(0, 0, 0, 0.1685267857142857) 97%, rgba(0, 0, 0, 0.39821866246498594) 100%);
+}
+
+#book .item {
+    height: 100%;
+    position: relative;
+}
+
+#book .item img {
+    width: 100%;
+    height: 100%;
+}
+
+#book .item .thumb-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+#book .item .big-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+
+/* #book .shadow{
+    box-shadow: 0 4px 10px #666;
+} */
+
+#wrap-logo {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #fff;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 999px;
+}
+
+#wrap-logo img {
+    width: 90%;
+}
+
+#left-right-wrap button {
+    position: absolute;
+    width: 70px;
+    height: 100px;
+    top: 50%;
+    z-index: 10;
+    transform: translateY(-50%);
+    font-size: 50px;
+    color: white;
+    opacity: .2;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: .4s;
+}
+
+#left-right-wrap button:hover {
+    background-color: #b7b7b7;
+    opacity: .5;
+}
+
+#left-right-wrap button.left {
+    left: 0;
+}
+
+#left-right-wrap button.left:hover {
+    left: 20px;
+}
+
+#left-right-wrap button.right {
+    right: 0;
+}
+
+#left-right-wrap button.right:hover {
+    right: 20px;
+}
+
+#control {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #004382b3;
+    z-index: 20;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#control .left,
+#control .right {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+#control button {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 6px;
+}
+
+#control input {
+    margin-right: 6px;
+    height: 25px;
+    width: 100px;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+#slider {
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+    top: 150%;
+    left: 0;
+    background: #002651;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 20px 0;
+    transition: 1s;
+}
+
+#slider #close-slider {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    color: #002651;
+    font-size: 20px;
+}
+
+#slider .swiper-slide {
+    width: 100%;
+}
+
+#slider .wrap-image {
+    width: 100%;
+    height: 300px;
+    transition: .4s;
+    overflow: hidden;
+}
+
+#slider .wrap-image img {
+    width: 100%;
+    height: 100%;
+    opacity: .4;
+    transition: .4s;
+    object-fit: cover;
+}
+
+#slider img:hover {
+    opacity: 1;
+}
+
+#slider p {
+    color: white;
+    text-align: center;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+#slider .active img {
+    opacity: 1;
+}
+
+@media screen and (max-width: 585px) {
+    #control,
+    #wrap-logo,
+    #slider {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .wraper {
+        display: flex;
+        min-height: 100vh;
+    }
+    #book {
+        margin-top: 20px;
+    }
+    #wrap-logo {
+        width: 100px;
+        height: 50px;
+        top: 10px;
+        left: 50%;
+        background-color: #fff;
+        z-index: 9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(-50%);
+    }
+    #wrap-logo img {
+        width: 50%;
+    }
+    #left-right-wrap button {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+}
+
+.d-none {
+    display: none!important;
+}
