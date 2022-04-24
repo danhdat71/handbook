@@ -5,6 +5,7 @@ namespace App\Traits;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 trait ImageTrait
 {
@@ -56,11 +57,11 @@ trait ImageTrait
     /**
      * Xóa ảnh khỏi server
      *
-     * @param array $imageList
+     * @param array $imageList, $disl
      * @return void
      * **/
     protected function deleteImage($imageList)
     {
-        Storage::disk('public_upload')->delete($imageList);
+        File::delete($imageList);
     }
 }

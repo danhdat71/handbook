@@ -10,6 +10,8 @@ let loadFrameSound = $('#wrap-sound-bg .load-frame-sound');
 let soundBackgroundBar = $('#wrap-sound-bg .load-bar span');
 let percentNumberSound = $('#wrap-sound-bg .percen');
 let audioControl = $('#wrap-sound-bg .control-audio');
+let wrapBoxFileInput = $('#wrap-box-file input');
+let bookProcessBar = $('#wrap-box-file .loading');
 let configError = {
     position: 'top',
     title: ``,
@@ -22,7 +24,7 @@ let configError = {
     showConfirmButton: false,
 }
 
-changeBackgroundInput.change(function(){
+changeBackgroundInput.change(function() {
     let formDataBackground = new FormData($('#form-background')[0]);
     inputBackground.prop('disabled', true);
     $.ajax({
@@ -32,15 +34,15 @@ changeBackgroundInput.change(function(){
         xhr: function() {
             var xhr = new window.XMLHttpRequest();
             xhr.upload.addEventListener("progress", function(evt) {
-              if (evt.lengthComputable) {
-                var percentComplete = evt.loaded / evt.total;
-                percentComplete = parseInt(percentComplete * 100);
-                loadFrameBackground.removeClass('d-none');
-                backgroundProcessBar.css({
-                    'width' : percentComplete + "%"
-                });
-                percentNumberBackground.text(percentComplete+"%");
-              }
+                if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    loadFrameBackground.removeClass('d-none');
+                    backgroundProcessBar.css({
+                        'width': percentComplete + "%"
+                    });
+                    percentNumberBackground.text(percentComplete + "%");
+                }
             }, false);
 
             return xhr;
@@ -52,19 +54,19 @@ changeBackgroundInput.change(function(){
         processData: false,
         data: formDataBackground,
         type: 'post',
-        success: function (res) {
+        success: function(res) {
             console.log(res);
             let html = ``;
-            if(res.status == false){
+            if (res.status == false) {
                 inputBackground.prop('disabled', false);
                 res.messages.background.forEach(element => {
-                    html+= `<h5 style='color:white;'>" ${element} "</h5>`;
+                    html += `<h5 style='color:white;'>" ${element} "</h5>`;
                     configError.html = html
                 });
                 Swal.fire(configError);
                 loadFrameBackground.addClass('d-none');
                 previewImageBackground.attr('src', 'image/fixed/bg_eximage.jpg');
-            }else{
+            } else {
                 inputBackground.prop('disabled', false);
                 loadFrameBackground.addClass('d-none');
             }
@@ -72,7 +74,7 @@ changeBackgroundInput.change(function(){
     });
 });
 
-wrapSoundInput.change(function(){
+wrapSoundInput.change(function() {
     let formDataSound = new FormData($('#wrap-sound-bg')[0]);
     wrapSoundInput.prop('disabled', true);
     $.ajax({
@@ -82,15 +84,15 @@ wrapSoundInput.change(function(){
         xhr: function() {
             var xhr = new window.XMLHttpRequest();
             xhr.upload.addEventListener("progress", function(evt) {
-              if (evt.lengthComputable) {
-                var percentComplete = evt.loaded / evt.total;
-                percentComplete = parseInt(percentComplete * 100);
-                loadFrameSound.removeClass('d-none');
-                soundBackgroundBar.css({
-                    'width' : percentComplete + "%"
-                });
-                percentNumberSound.text(percentComplete+"%");
-              }
+                if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    loadFrameSound.removeClass('d-none');
+                    soundBackgroundBar.css({
+                        'width': percentComplete + "%"
+                    });
+                    percentNumberSound.text(percentComplete + "%");
+                }
             }, false);
 
             return xhr;
@@ -102,18 +104,18 @@ wrapSoundInput.change(function(){
         processData: false,
         data: formDataSound,
         type: 'post',
-        success: function (res) {
+        success: function(res) {
             console.log(res);
             let html = ``;
-            if(res.status == false){
+            if (res.status == false) {
                 wrapSoundInput.prop('disabled', false);
                 res.messages.background_sound.forEach(element => {
-                    html+= `<h5 style='color:white;'>" ${element} "</h5>`;
+                    html += `<h5 style='color:white;'>" ${element} "</h5>`;
                     configError.html = html
                 });
                 Swal.fire(configError);
                 loadFrameSound.addClass('d-none');
-            }else{
+            } else {
                 wrapSoundInput.prop('disabled', false);
                 loadFrameSound.addClass('d-none');
                 audioControl.attr('src', res.messages.background_sound);
@@ -123,7 +125,7 @@ wrapSoundInput.change(function(){
 });
 
 
-$('.row-config').find('input, select').change(function(){
+$('.row-config').find('input, select').change(function() {
     let formData = new FormData();
     formData.append($(this).attr('name'), $(this).val());
     $.ajax({
@@ -137,19 +139,106 @@ $('.row-config').find('input, select').change(function(){
         contentType: false,
         processData: false,
         data: formData,
-        success: function (res) {
+        success: function(res) {
             let html = ``;
-            if(res.status == false){
+            if (res.status == false) {
                 let messages = res.messages;
-                for(var propertyName in messages) {
+                for (var propertyName in messages) {
                     let msgArray = messages[propertyName];
                     msgArray.forEach(element => {
-                        html+= `<h5 style='color:white;'>${element}</h5>`;
+                        html += `<h5 style='color:white;'>${element}</h5>`;
                         configError.html = html
                     });
                 }
                 Swal.fire(configError);
             }
+        }
+    });
+});
+
+wrapBoxFileInput.change(function() {
+    let formData = new FormData($('#wrap-box-file')[0]);
+    wrapBoxFileInput.prop('disabled', true);
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        xhr: function() {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    bookProcessBar.css({
+                        'width': percentComplete + "%"
+                    });
+                }
+            }, false);
+
+            return xhr;
+        },
+        url: '/book',
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        type: 'post',
+        success: function(res) {
+            console.log(res);
+            let html = ``;
+            if (res.status == false) {
+                wrapBoxFileInput.prop('disabled', false);
+                res.messages.images.forEach(element => {
+                    html += `<h5 style='color:white;'>" ${element} "</h5>`;
+                    configError.html = html
+                });
+                Swal.fire(configError);
+                bookProcessBar.css({ 'width': '0%' });
+            } else {
+                location.reload();
+            }
+        }
+    });
+});
+
+let currentID = null;
+let updatePosition = null;
+let mainTable = $('#main-table');
+
+mainTable.find('tr').on('mousedown', function() {
+    currentID = $(this).attr('data-id');
+});
+mainTable.find('tr').on('mouseup', function() {
+    updatePosition = $(this).index() + 1;
+    let formData = new FormData();
+    formData.append('id', currentID);
+    formData.append('update_position', updatePosition);
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        url: '/reorder-book-page',
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        type: 'post',
+        success: function(res) {
+            // console.log(res);
+            // let html = ``;
+            // if(res.status == false){
+            //     wrapBoxFileInput.prop('disabled', false);
+            //     res.messages.images.forEach(element => {
+            //         html+= `<h5 style='color:white;'>" ${element} "</h5>`;
+            //         configError.html = html
+            //     });
+            //     Swal.fire(configError);
+            //     bookProcessBar.css({'width' : '0%'});
+            // }else{
+            //     location.reload();
+            // }
         }
     });
 });
