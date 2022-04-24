@@ -15,8 +15,8 @@ class StoreBookRequest extends BaseRequest
     public function rules()
     {
         return [
-            'images' => 'max:20|min:1',
-            'images.*' => 'required|mimes:jpg,png,jpeg|max:2000',
+            'images' => 'max:10|min:1',
+            'images.*' => 'required|mimes:jpg,png,jpeg|max:10000',
         ];
     }
 
