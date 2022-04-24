@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="image/fixed/logo.png" type="image/x-icon" />
-    <meta property="og:title" content="{{$config->description}}">
-    <meta property="og:description" content="{{$config->description}}">
-    <meta name="description" content="{{$config->description}}">
-    <meta property="og:image" content="{{env('APP_URL') . "/" . $book[0]->slider_image}}">
-    <meta name="keywords" content="{{$config->description}}">
+    <meta property="og:title" content="@if(isset($config->description)){{$config->description}}@endif">
+    <meta property="og:description" content="@if(isset($config->description)){{$config->description}}@endif">
+    <meta name="description" content="@if(isset($config->description)){{$config->description}}@endif">
+    <meta property="og:image" content="@if(isset($config->image)){{env('APP_URL') . "/" . $book[0]->slider_image}}@endif">
+    <meta name="keywords" content="@if(isset($config->description)){{$config->description}}@endif">
     <meta property="og:site_name" content="{{env('APP_URL')}}"/>
     <meta property="og:url" content="{{env('APP_URL')}}"/>
     <meta name="robots" content="index,follow"/>
