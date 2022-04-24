@@ -30,8 +30,8 @@ class UserSeeder extends Seeder
     {
         $this->userRepo->db->truncate();
         $this->userRepo->model::create([
-            'email' => 'admin@mail.com',
-            'password' => Hash::make("12345678"),
+            'email' => env('ADMIN_EMAIL'),
+            'password' => env('ADMIN_PASSWORD'),
             'name' => 'admin'
         ]);
     }
