@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
         $this->userRepo->db->truncate();
         $this->userRepo->model::create([
             'email' => env('ADMIN_EMAIL'),
-            'password' => env('ADMIN_PASSWORD'),
+            'password' => Hash::make(env('ADMIN_PASSWORD')),
             'name' => 'admin'
         ]);
     }
