@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
             $table->string('big_image')->nullable()->default(null);
             $table->string('thumb_image')->nullable()->default(null);
             $table->string('slider_image')->nullable()->default(null);
-            $table->string('order')->nullable()->default(null);
+            $table->integer('order')->nullable()->default(null);
             $table->string('status')->nullable()->default(null);
             $table->timestamps();
         });
