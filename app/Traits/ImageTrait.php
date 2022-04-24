@@ -41,7 +41,8 @@ trait ImageTrait
         $blurPath = 'image/' . $folder . "/" . $imageNameBlur;
 
         //Xử lý ảnh
-        $image->fit($bigWidth, $bigHeight)->save($bigPath, $quality);
+        //$image->fit($bigWidth, $bigHeight)->save($bigPath, $quality);
+        $image->save($bigPath, $quality);
         if($isThumb){
             $image->fit($thumbWidth, $thumbHeight)->save($thumbPath, $quality);
             $image->fit($thumbWidth, $thumbHeight)->blur(100)->save($blurPath, $quality);
